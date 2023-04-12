@@ -14,6 +14,7 @@ public class Cesar extends javax.swing.JPanel {
      */
     public Cesar() {
         initComponents();
+        Decriptar.setEnabled(false);
     }
 
     /**
@@ -51,10 +52,22 @@ public class Cesar extends javax.swing.JPanel {
 
         jLabel5.setText("texto decriptado");
 
+        Chave.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                ChaveKeyPressed(evt);
+            }
+        });
+
         Encriptar.setText("Encriptar");
         Encriptar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 EncriptarActionPerformed(evt);
+            }
+        });
+
+        TextoInicial.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                TextoInicialKeyPressed(evt);
             }
         });
 
@@ -131,12 +144,41 @@ public class Cesar extends javax.swing.JPanel {
     private void EncriptarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_EncriptarActionPerformed
         String texto1 = TextoInicial.getText();
         TextoEncriptado.setText(texto1);
+        Decriptar.setEnabled(true);
     }//GEN-LAST:event_EncriptarActionPerformed
 
     private void DecriptarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_DecriptarActionPerformed
         String texto2 = TextoEncriptado.getText();
         TextoDecriptado.setText(texto2);
     }//GEN-LAST:event_DecriptarActionPerformed
+
+    private void TextoInicialKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_TextoInicialKeyPressed
+        if(evt.getKeyChar()== 32 || evt.getKeyChar()>= 48 && evt.getKeyChar()<= 57 || evt.getKeyChar()>= 97 && evt.getKeyChar()<= 122 || Character.isISOControl(evt.getKeyChar())){
+            TextoInicial.setEditable(true);
+        }else{
+            TextoInicial.setEditable(false);
+        }
+    }//GEN-LAST:event_TextoInicialKeyPressed
+
+    private void ChaveKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_ChaveKeyPressed
+        int caracteres = Chave.getText().length();
+        if(caracteres < 1 || Character.isISOControl(evt.getKeyChar())){
+            if(evt.getKeyChar()>= 49 && evt.getKeyChar()<= 57 || Character.isISOControl(evt.getKeyChar())){
+                Chave.setEditable(true);
+            }else{
+                Chave.setEditable(false);
+            }
+        }else if(Chave.getText() == "1" || Chave.getText()== "2" && caracteres == 1){
+            if(evt.getKeyChar()>= 49 && evt.getKeyChar()<= 57){
+                Chave.setEditable(true);
+            }
+            
+        }else{
+            Chave.setEditable(false);
+        }
+        
+        
+    }//GEN-LAST:event_ChaveKeyPressed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

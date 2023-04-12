@@ -14,6 +14,7 @@ public class Vigenere extends javax.swing.JPanel {
      */
     public Vigenere() {
         initComponents();
+        Decriptar.setEnabled(false);
     }
 
     /**
@@ -131,6 +132,7 @@ public class Vigenere extends javax.swing.JPanel {
     private void EncriptarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_EncriptarActionPerformed
         String texto1 = TextoInicial.getText();
         TextoEncriptado.setText(texto1);
+        Decriptar.setEnabled(true);
     }//GEN-LAST:event_EncriptarActionPerformed
 
     private void DecriptarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_DecriptarActionPerformed
