@@ -297,6 +297,15 @@ public class Inicio extends javax.swing.JFrame {
         resetColor(cesarP);
         resetColor(vigenereP);
         setColor(trilhoP);
+        
+        Trilho p1 = new Trilho();
+        p1.setSize(390, 260);
+        p1.setLocation(0,0);
+        
+        content.removeAll();
+        content.add(p1, BorderLayout.CENTER);
+        content.revalidate();
+        content.repaint();
     }//GEN-LAST:event_trilhoPMouseClicked
 
     void setColor(JPanel panel){

@@ -52,10 +52,22 @@ public class Vigenere extends javax.swing.JPanel {
 
         jLabel5.setText("texto decriptado");
 
+        Chave.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                ChaveKeyPressed(evt);
+            }
+        });
+
         Encriptar.setText("Encriptar");
         Encriptar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 EncriptarActionPerformed(evt);
+            }
+        });
+
+        TextoInicial.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                TextoInicialKeyPressed(evt);
             }
         });
 
@@ -76,7 +88,7 @@ public class Vigenere extends javax.swing.JPanel {
             backgroundLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(backgroundLayout.createSequentialGroup()
                 .addGap(32, 32, 32)
-                .addGroup(backgroundLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                .addGroup(backgroundLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jLabel2)
                     .addComponent(jLabel3)
                     .addComponent(jLabel4)
@@ -85,7 +97,7 @@ public class Vigenere extends javax.swing.JPanel {
                     .addComponent(jLabel5)
                     .addComponent(TextoDecriptado, javax.swing.GroupLayout.DEFAULT_SIZE, 187, Short.MAX_VALUE)
                     .addComponent(Chave))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 63, Short.MAX_VALUE)
+                .addGap(63, 63, 63)
                 .addGroup(backgroundLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(Encriptar)
                     .addComponent(Decriptar))
@@ -130,15 +142,41 @@ public class Vigenere extends javax.swing.JPanel {
     }// </editor-fold>//GEN-END:initComponents
 
     private void EncriptarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_EncriptarActionPerformed
+        //comando de teste apagar qundo colocar formula logica
         String texto1 = TextoInicial.getText();
         TextoEncriptado.setText(texto1);
+        //colocar formula logica aqui
         Decriptar.setEnabled(true);
     }//GEN-LAST:event_EncriptarActionPerformed
 
     private void DecriptarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_DecriptarActionPerformed
+        //comando de teste apagar qundo colocar formula logica
         String texto2 = TextoEncriptado.getText();
         TextoDecriptado.setText(texto2);
+        //colocar formula logica aqui
     }//GEN-LAST:event_DecriptarActionPerformed
+
+    private void TextoInicialKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_TextoInicialKeyPressed
+        if(evt.getKeyChar()== 32 || evt.getKeyChar()>= 48 && evt.getKeyChar()<= 57 || evt.getKeyChar()>= 97 && evt.getKeyChar()<= 122 || Character.isISOControl(evt.getKeyChar())){
+            TextoInicial.setEditable(true);
+        }else{
+            TextoInicial.setEditable(false);
+        }
+    }//GEN-LAST:event_TextoInicialKeyPressed
+
+    private void ChaveKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_ChaveKeyPressed
+        int caracteresTexto = TextoInicial.getText().length();
+        int caracteresChave = Chave.getText().length();
+        if(caracteresChave < caracteresTexto){
+            if(evt.getKeyChar()== 32 || evt.getKeyChar()>= 48 && evt.getKeyChar()<= 57 || evt.getKeyChar()>= 97 && evt.getKeyChar()<= 122 || Character.isISOControl(evt.getKeyChar())){
+                Chave.setEditable(true);
+            }else{
+                Chave.setEditable(false);
+            }
+        }else{
+                Chave.setEditable(false);
+        }  
+    }//GEN-LAST:event_ChaveKeyPressed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

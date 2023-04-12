@@ -41,7 +41,7 @@
           <Group type="103" groupAlignment="0" attributes="0">
               <Group type="102" alignment="0" attributes="0">
                   <EmptySpace min="-2" pref="32" max="-2" attributes="0"/>
-                  <Group type="103" groupAlignment="0" max="-2" attributes="0">
+                  <Group type="103" groupAlignment="0" attributes="0">
                       <Component id="jLabel2" alignment="0" min="-2" max="-2" attributes="0"/>
                       <Component id="jLabel3" alignment="0" min="-2" max="-2" attributes="0"/>
                       <Component id="jLabel4" alignment="0" min="-2" max="-2" attributes="0"/>
@@ -51,7 +51,7 @@
                       <Component id="TextoDecriptado" alignment="0" pref="187" max="32767" attributes="0"/>
                       <Component id="Chave" alignment="0" min="-2" pref="60" max="-2" attributes="0"/>
                   </Group>
-                  <EmptySpace pref="73" max="32767" attributes="0"/>
+                  <EmptySpace min="-2" pref="73" max="-2" attributes="0"/>
                   <Group type="103" groupAlignment="0" attributes="0">
                       <Component id="Encriptar" alignment="0" min="-2" max="-2" attributes="0"/>
                       <Component id="Decriptar" alignment="0" min="-2" max="-2" attributes="0"/>
@@ -112,6 +112,9 @@
           </Properties>
         </Component>
         <Component class="javax.swing.JTextField" name="Chave">
+          <Events>
+            <EventHandler event="keyPressed" listener="java.awt.event.KeyListener" parameters="java.awt.event.KeyEvent" handler="ChaveKeyPressed"/>
+          </Events>
         </Component>
         <Component class="javax.swing.JButton" name="Encriptar">
           <Properties>
@@ -122,6 +125,9 @@
           </Events>
         </Component>
         <Component class="javax.swing.JTextField" name="TextoInicial">
+          <Events>
+            <EventHandler event="keyPressed" listener="java.awt.event.KeyListener" parameters="java.awt.event.KeyEvent" handler="TextoInicialKeyPressed"/>
+          </Events>
         </Component>
         <Component class="javax.swing.JTextField" name="TextoEncriptado">
           <Properties>
