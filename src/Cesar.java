@@ -142,14 +142,18 @@ public class Cesar extends javax.swing.JPanel {
     }// </editor-fold>//GEN-END:initComponents
 
     private void EncriptarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_EncriptarActionPerformed
+        //comando de teste apagar qundo colocar formula logica
         String texto1 = TextoInicial.getText();
         TextoEncriptado.setText(texto1);
+        //colocar formula logica aqui
         Decriptar.setEnabled(true);
     }//GEN-LAST:event_EncriptarActionPerformed
 
     private void DecriptarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_DecriptarActionPerformed
+        //comando de teste apagar qundo colocar formula logica
         String texto2 = TextoEncriptado.getText();
         TextoDecriptado.setText(texto2);
+        //colocar formula logica aqui
     }//GEN-LAST:event_DecriptarActionPerformed
 
     private void TextoInicialKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_TextoInicialKeyPressed
@@ -168,16 +172,13 @@ public class Cesar extends javax.swing.JPanel {
             }else{
                 Chave.setEditable(false);
             }
-        }else if(Chave.getText() == "1" || Chave.getText()== "2" && caracteres == 1){
-            if(evt.getKeyChar()>= 49 && evt.getKeyChar()<= 57){
+        }else if(caracteres == 1 && Integer.parseInt(Chave.getText()) == 1 && evt.getKeyChar()>= 48 && evt.getKeyChar()<= 57 || Character.isISOControl(evt.getKeyChar())){
                 Chave.setEditable(true);
-            }
-            
+        }else if(caracteres == 1 && Integer.parseInt(Chave.getText()) == 2 && evt.getKeyChar()>= 48 && evt.getKeyChar()<= 53 || Character.isISOControl(evt.getKeyChar())){
+                Chave.setEditable(true);
         }else{
             Chave.setEditable(false);
-        }
-        
-        
+        }    
     }//GEN-LAST:event_ChaveKeyPressed
 
 
