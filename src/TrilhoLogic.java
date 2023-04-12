@@ -1,6 +1,6 @@
 import java.util.*;
 
-// Usar input texto: attackpostponeduntiltwoamxy
+// Usar input texto: attackpostponeduntiltwoamxyz
 // Usar input chave: 3201456
 
 public class main {
@@ -19,10 +19,10 @@ public class main {
         chave = scan.next().toCharArray();
         // Validar input
 
-        final int NUM_FILAS = textoBase.length() / NUM_COLUNAS; // numero de caracteres por coluna
+        final int NUM_FILAS = (int) Math.ceil((double) textoBase.length() / NUM_COLUNAS); // numero de caracteres por coluna
 
-        System.out.println("\nTexto base:");
-        printTexto(textoBase);
+        // System.out.println("\nTexto base:");
+        // printTexto(textoBase);
 
         System.out.println("\nTexto base Matriz:");
         printTextoMatriz(textoBase, NUM_COLUNAS, NUM_FILAS);
@@ -30,12 +30,11 @@ public class main {
         System.out.println("\nEncriptando o texto base...");
         textoEncriptado = codificarTexto(textoBase, NUM_COLUNAS, NUM_FILAS, chave);
 
-        System.out.println("\nTexto encriptado:");
-        printTexto(textoEncriptado);
+        // System.out.println("\nTexto encriptado:");
+        // printTexto(textoEncriptado);
 
         System.out.println("\nTexto encriptado Matriz:");
         printTextoMatriz(textoEncriptado, NUM_COLUNAS, NUM_FILAS);
-        
         
         return;
     }
@@ -48,7 +47,7 @@ public class main {
         for(int j = 0; j < numFilas; j++) {
             for(int k = 0; k < numColunas; k++) {
                 int posicaoAtual = (j*numColunas) + k;
-                System.out.print(texto.charAt(posicaoAtual));
+                System.out.print(getCharAt(texto, posicaoAtual));
             }
             System.out.println();
         }
@@ -63,7 +62,7 @@ public class main {
         for(int j = 0; j < numFilas; j++) {
             for(int k = 0; k < numColunas; k++) {
                 int posicaoAtual = (j*numColunas) + k;
-                matrizAux[chave[k]-'0'][j] = textoInicial.charAt(posicaoAtual);
+                matrizAux[chave[k]-'0'][j] = getCharAt(textoInicial, posicaoAtual);
             }
         }
 
@@ -77,5 +76,15 @@ public class main {
         }
 
         return textoFinal;
+    }
+
+    // Retornar um espaço vazio se não houver um char na posição indicada
+    public static char getCharAt(String texto, int pos) {
+        try {
+            return texto.charAt(pos);
+        }
+        catch(Exception e) {
+            return ' ';
+        }
     }
 }
