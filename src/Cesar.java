@@ -52,6 +52,7 @@ public class Cesar extends javax.swing.JPanel {
         initComponents();
         Decriptar.setEnabled(false);
         TextoInicial.setDocument(new LimitaCaracteres(200, LimitaCaracteres.TipoEntrada.NUMEROSELETRAS));
+        Chave.setDocument(new LimitaCaracteres(2, LimitaCaracteres.TipoEntrada.NUMEROS));
     }
 
     @SuppressWarnings("unchecked")
