@@ -42,9 +42,10 @@ RA: 056942
 Turma: 7 SI
 */
 
-import java.util.regex.Matcher;
-import java.util.regex.Pattern;
+// import java.util.regex.Matcher;
+// import java.util.regex.Pattern;
 import mascara.util.LimitaCaracteres;
+import java.util.*;
 
 public class Trilho extends javax.swing.JPanel {
 
@@ -230,6 +231,21 @@ public class Trilho extends javax.swing.JPanel {
         final int NUM_COLUNAS = 7;
         char[] chave = new char[NUM_COLUNAS];
         chave = Chave.getText().toCharArray();
+        System.out.println(new String(chave));
+        // Set para evitar numeros duplicados
+        Set<Character> setAux = new HashSet<Character>();
+        for(int i = 0; i < chave.length; i++) {
+            setAux.add(chave[i]);
+        }
+        Iterator<Character> setIterator = setAux.iterator();
+        String test = "";
+        while(setIterator.hasNext()) {
+            test += setIterator.next();
+        }
+        chave = test.toCharArray();
+        System.out.println(new String(chave));
+        Chave.setText(new String(chave));
+
         String textoBase = TextoInicial.getText();
         if(Chave.getText().length() == 7){
             final int NUM_FILAS = (int) Math.ceil((double) textoBase.length() / NUM_COLUNAS); // numero de caracteres por coluna
