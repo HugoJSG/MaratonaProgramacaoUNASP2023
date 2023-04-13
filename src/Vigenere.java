@@ -38,7 +38,7 @@ RA: 158467
 Turma: 5 SI
 
 Nome: Kayan Guerra 
-RA: 018006
+RA: 056942
 Turma: 7 SI
 */
 
@@ -70,7 +70,6 @@ public class Vigenere extends javax.swing.JPanel {
         TextoEncriptado = new javax.swing.JTextField();
         TextoDecriptado = new javax.swing.JTextField();
         Decriptar = new javax.swing.JButton();
-        ErroTexto = new javax.swing.JTextField();
         ErroTexto1 = new javax.swing.JTextField();
 
         setMinimumSize(new java.awt.Dimension(390, 260));
@@ -79,9 +78,9 @@ public class Vigenere extends javax.swing.JPanel {
         background.setBackground(new java.awt.Color(204, 255, 255));
         background.setPreferredSize(new java.awt.Dimension(400, 290));
 
-        jLabel2.setText("texto inicial (MAIUSCULA E NUMEROS)");
+        jLabel2.setText("texto inicial (MAIUSCULAS e NUMEROS)");
 
-        jLabel3.setText("chave (MAIUSCULA)");
+        jLabel3.setText("chave (MAIUSCULAS)");
 
         jLabel4.setText("texto encriptado");
 
@@ -111,11 +110,6 @@ public class Vigenere extends javax.swing.JPanel {
             }
         });
 
-        ErroTexto.setEditable(false);
-        ErroTexto.setBackground(new java.awt.Color(204, 255, 255));
-        ErroTexto.setForeground(new java.awt.Color(255, 51, 51));
-        ErroTexto.setBorder(null);
-
         ErroTexto1.setEditable(false);
         ErroTexto1.setBackground(new java.awt.Color(204, 255, 255));
         ErroTexto1.setForeground(new java.awt.Color(255, 51, 51));
@@ -142,11 +136,8 @@ public class Vigenere extends javax.swing.JPanel {
                         .addGroup(backgroundLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(Encriptar)
                             .addComponent(Decriptar)))
-                    .addGroup(backgroundLayout.createSequentialGroup()
-                        .addGap(18, 18, 18)
-                        .addComponent(ErroTexto, javax.swing.GroupLayout.PREFERRED_SIZE, 143, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, backgroundLayout.createSequentialGroup()
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addGap(12, 12, 12)
                         .addComponent(ErroTexto1, javax.swing.GroupLayout.PREFERRED_SIZE, 143, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addContainerGap())
         );
@@ -156,9 +147,7 @@ public class Vigenere extends javax.swing.JPanel {
                 .addGap(20, 20, 20)
                 .addComponent(jLabel2)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addGroup(backgroundLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(TextoInicial, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(ErroTexto, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addComponent(TextoInicial, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(jLabel3)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
@@ -184,15 +173,15 @@ public class Vigenere extends javax.swing.JPanel {
         this.setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(background, javax.swing.GroupLayout.DEFAULT_SIZE, 397, Short.MAX_VALUE)
+            .addComponent(background, javax.swing.GroupLayout.DEFAULT_SIZE, 396, Short.MAX_VALUE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addComponent(background, javax.swing.GroupLayout.DEFAULT_SIZE, 264, Short.MAX_VALUE)
         );
     }// </editor-fold>//GEN-END:initComponents
-    public static String Codificar(String pass,String Mensagem) {
-        String sair = "";
+    public static String Encriptar(String pass,String Mensagem) {
+        String textoencriptado = "";
         String Abcedario = "ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789";
         String chave = pass;
         char[] chaveEquals = new char[Mensagem.length()];
@@ -211,7 +200,7 @@ public class Vigenere extends javax.swing.JPanel {
         int x = 0, y = 0, z;
         for (int c = 0; c < Mensagem.length(); c++) {
             if (Mensagem.charAt(c) == ' ') {
-                sair += " ";
+                textoencriptado += " ";
                 c++;
             }
             for (int f = 0; f < Abcedario.length(); f++) {
@@ -223,12 +212,12 @@ public class Vigenere extends javax.swing.JPanel {
                 }
             }
             z = (x + y) % 36;
-            sair += Abcedario.charAt(z);
+            textoencriptado += Abcedario.charAt(z);
         }
-        return sair;
+        return textoencriptado;
     }
-     public static String Decodificar(String pass, String Mensagem) {
-        String sair = "";
+     public static String Decriptar(String pass, String Mensagem) {
+        String textodecriptado = "";
         String Abcedario = "ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789";
         String chave = pass;
         char[] chaveEquals = new char[Mensagem.length()];
@@ -248,7 +237,7 @@ public class Vigenere extends javax.swing.JPanel {
         int x = 0, y = 0, z, t;
         for (int c = 0; c < Mensagem.length(); c++) {
             if (Mensagem.charAt(c) == ' ') {
-                sair += " ";
+                textodecriptado += " ";
                 c++;
             }
             for (int f = 0; f < Abcedario.length(); f++) {
@@ -263,12 +252,12 @@ public class Vigenere extends javax.swing.JPanel {
 
             if (z <= 0) {
                 if (z == 0) {
-                    sair += "A";
+                    textodecriptado += "A";
                 } else {
                     for (int j = 1; j <= Abcedario.length(); j++) {
                         cont++;
                         if (cont == (z * -1)) {
-                            sair += Abcedario.charAt(j);
+                            textodecriptado += Abcedario.charAt(j);
                             break;
                         }
                     }
@@ -277,7 +266,7 @@ public class Vigenere extends javax.swing.JPanel {
                 for (int i = 35; i >= 0; i--) {
                     cont++;
                     if (cont == z) {
-                        sair += Abcedario.charAt(i);
+                        textodecriptado += Abcedario.charAt(i);
                         break;
                     }
                 }
@@ -285,7 +274,7 @@ public class Vigenere extends javax.swing.JPanel {
 
             cont = 0;
         }
-        return sair;
+        return textodecriptado;
     }
     private void EncriptarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_EncriptarActionPerformed
         ErroTexto1.setText("");
@@ -295,7 +284,7 @@ public class Vigenere extends javax.swing.JPanel {
             if(caracteresChave == caracteresTexto){
                 String textoinicial = TextoInicial.getText();
                 String chave = Chave.getText();
-                String textofinal = Codificar(chave,textoinicial);
+                String textofinal = Encriptar(chave,textoinicial);
         
                 TextoEncriptado.setText(textofinal);
                 Decriptar.setEnabled(true);
@@ -310,7 +299,7 @@ public class Vigenere extends javax.swing.JPanel {
         String textoencriptado = TextoEncriptado.getText();
         String chave = Chave.getText();
         
-        String textofinal = Decodificar(chave,textoencriptado);
+        String textofinal = Decriptar(chave,textoencriptado);
         
         TextoDecriptado.setText(textofinal);
     }//GEN-LAST:event_DecriptarActionPerformed
@@ -329,7 +318,6 @@ public class Vigenere extends javax.swing.JPanel {
     private javax.swing.JTextField Chave;
     private javax.swing.JButton Decriptar;
     private javax.swing.JButton Encriptar;
-    private javax.swing.JTextField ErroTexto;
     private javax.swing.JTextField ErroTexto1;
     private javax.swing.JTextField TextoDecriptado;
     private javax.swing.JTextField TextoEncriptado;

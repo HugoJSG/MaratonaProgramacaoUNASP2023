@@ -24,7 +24,7 @@
   <Layout>
     <DimensionLayout dim="0">
       <Group type="103" groupAlignment="0" attributes="0">
-          <Component id="background" alignment="0" pref="397" max="32767" attributes="0"/>
+          <Component id="background" alignment="0" pref="402" max="32767" attributes="0"/>
       </Group>
     </DimensionLayout>
     <DimensionLayout dim="1">
@@ -118,7 +118,7 @@
       <SubComponents>
         <Component class="javax.swing.JLabel" name="jLabel2">
           <Properties>
-            <Property name="text" type="java.lang.String" value="texto inicial (MAIUSCULA E NUMEROS)"/>
+            <Property name="text" type="java.lang.String" value="texto inicial (MAIUSCULAS e NUMEROS)"/>
           </Properties>
         </Component>
         <Component class="javax.swing.JLabel" name="jLabel3">

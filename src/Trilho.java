@@ -38,7 +38,7 @@ RA: 158467
 Turma: 5 SI
 
 Nome: Kayan Guerra 
-RA: 018006
+RA: 056942
 Turma: 7 SI
 */
 
@@ -52,7 +52,7 @@ public class Trilho extends javax.swing.JPanel {
         initComponents();
         Decriptar.setEnabled(false);
         TextoInicial.setDocument(new LimitaCaracteres(200, LimitaCaracteres.TipoEntrada.NUMEROSELETRAS));
-        Chave.setDocument(new LimitaCaracteres(7, LimitaCaracteres.TipoEntrada.NUMEROS));
+        Chave.setDocument(new LimitaCaracteres(7, LimitaCaracteres.TipoEntrada.NUMEROS2));
     }
 
     @SuppressWarnings("unchecked")
@@ -70,19 +70,24 @@ public class Trilho extends javax.swing.JPanel {
         TextoEncriptado = new javax.swing.JTextField();
         TextoDecriptado = new javax.swing.JTextField();
         Decriptar = new javax.swing.JButton();
-        ErroTexto = new javax.swing.JTextField();
         ErroTexto1 = new javax.swing.JTextField();
 
         background.setBackground(new java.awt.Color(204, 255, 255));
         background.setPreferredSize(new java.awt.Dimension(400, 290));
 
-        jLabel2.setText("texto inicial (MAIUSCULA E NUMEROS)");
+        jLabel2.setText("texto inicial (MAIUSCULAS e NUMEROS)");
 
-        jLabel3.setText("chave (NUMEROS 1-7 NAO REPETIDOS)");
+        jLabel3.setText("chave (NUMEROS 0-6 NAO REPETIDOS)");
 
         jLabel4.setText("texto encriptado");
 
         jLabel5.setText("texto decriptado");
+
+        Chave.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                ChaveKeyPressed(evt);
+            }
+        });
 
         Encriptar.setText("Encriptar");
         Encriptar.addActionListener(new java.awt.event.ActionListener() {
@@ -101,11 +106,6 @@ public class Trilho extends javax.swing.JPanel {
                 DecriptarActionPerformed(evt);
             }
         });
-
-        ErroTexto.setEditable(false);
-        ErroTexto.setBackground(new java.awt.Color(204, 255, 255));
-        ErroTexto.setForeground(new java.awt.Color(255, 51, 51));
-        ErroTexto.setBorder(null);
 
         ErroTexto1.setEditable(false);
         ErroTexto1.setBackground(new java.awt.Color(204, 255, 255));
@@ -136,9 +136,7 @@ public class Trilho extends javax.swing.JPanel {
                         .addGap(29, 29, 29))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, backgroundLayout.createSequentialGroup()
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addGroup(backgroundLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(ErroTexto, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 143, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(ErroTexto1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 143, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addComponent(ErroTexto1, javax.swing.GroupLayout.PREFERRED_SIZE, 143, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addContainerGap())))
         );
         backgroundLayout.setVerticalGroup(
@@ -147,9 +145,7 @@ public class Trilho extends javax.swing.JPanel {
                 .addGap(20, 20, 20)
                 .addComponent(jLabel2)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addGroup(backgroundLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(TextoInicial, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(ErroTexto, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addComponent(TextoInicial, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(jLabel3)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
@@ -217,17 +213,13 @@ public class Trilho extends javax.swing.JPanel {
     public static String decodificarTexto(String textoInicial, int numColunas, int numFilas, char[] chave) {
         String textoFinal = "";
 
-        System.out.println(textoInicial);
         for(int j = 0; j < numFilas; j++) {
             for(int k = 0; k < numColunas; k++) {
                 int posicaoBuscada = (chave[k]-'0');
-                //System.out.println("posicaoBuscada: " + posicaoBuscada);
                 int test = (j*numColunas) + posicaoBuscada;
-                System.out.println("test: " + test);
                 textoFinal += textoInicial.charAt(test);
             }
         }
-        System.out.println(textoInicial);
 
         return textoFinal;
     }
@@ -263,12 +255,28 @@ public class Trilho extends javax.swing.JPanel {
         TextoDecriptado.setText(textoDecriptado);
     }//GEN-LAST:event_DecriptarActionPerformed
 
+    private void ChaveKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_ChaveKeyPressed
+        Chave.setEditable(true);
+        String pass = Chave.getText();
+        int caracteres = pass.length();
+        if(Character.isISOControl(evt.getKeyChar())){
+                Chave.setEditable(true);
+        }else{
+            for(int i=0;i<caracteres;i++){
+                if(pass.charAt(i)==evt.getKeyChar()){
+                    Chave.setEditable(false);
+                    break;
+                }
+            }    
+        }
+        
+    }//GEN-LAST:event_ChaveKeyPressed
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JTextField Chave;
     private javax.swing.JButton Decriptar;
     private javax.swing.JButton Encriptar;
-    private javax.swing.JTextField ErroTexto;
     private javax.swing.JTextField ErroTexto1;
     private javax.swing.JTextField TextoDecriptado;
     private javax.swing.JTextField TextoEncriptado;
