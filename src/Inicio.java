@@ -1,4 +1,46 @@
+/*
+DATA: 12 Abril 2023
 
+Nome: Levy Meireles Rodrigues dos Santos
+RA: 057772
+Turma: 5 SI
+
+Nome: Hugo Joel Sosa Geisse
+RA: 029230
+Turma: 5 SI
+
+Nome: João Vitor Teles Bonardi
+RA: 194341
+Turma: 1 EC
+
+Nome: Victor Augusto Malaquias Hoffman
+RA: 198462
+Turma: 1 EC
+
+Nome: Gabryel Meireles Rodrigues dos Santos
+RA: 059202
+Turma: 5 SI
+
+Nome: Gustavo Santos de araujo
+RA: 194578
+Turma: 1 EC
+
+Nome: Bruno de Oliveira
+RA: 183152
+Turma: 3 SI
+
+Nome: Lucas Cardoso Rios
+RA: 185793
+Turma: 3 SI
+
+Nome: Leonardo Ezequiel Sosa Geisse 
+RA: 158467
+Turma: 5 SI
+
+Nome: Kayan Guerra 
+RA: 018006
+Turma: 7 SI
+*/
 import java.awt.BorderLayout;
 import java.awt.Color;
 import javax.swing.JPanel;
@@ -53,6 +95,7 @@ public class Inicio extends javax.swing.JFrame {
         header = new javax.swing.JPanel();
         jLabel5 = new javax.swing.JLabel();
         jLabel6 = new javax.swing.JLabel();
+        jLabel8 = new javax.swing.JLabel();
         content = new javax.swing.JPanel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -168,7 +211,7 @@ public class Inicio extends javax.swing.JFrame {
             .addGroup(menuLayout.createSequentialGroup()
                 .addGap(14, 14, 14)
                 .addComponent(jLabel1)
-                .addContainerGap(23, Short.MAX_VALUE))
+                .addContainerGap(15, Short.MAX_VALUE))
             .addGroup(menuLayout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(jSeparator1)
@@ -198,30 +241,37 @@ public class Inicio extends javax.swing.JFrame {
 
         jLabel6.setFont(new java.awt.Font("Segoe UI", 1, 24)); // NOI18N
         jLabel6.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel6.setText("UNASP");
+        jLabel6.setText("12/04/2003");
+
+        jLabel8.setFont(new java.awt.Font("Segoe UI", 1, 24)); // NOI18N
+        jLabel8.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel8.setText("UNASP");
 
         javax.swing.GroupLayout headerLayout = new javax.swing.GroupLayout(header);
         header.setLayout(headerLayout);
         headerLayout.setHorizontalGroup(
             headerLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(headerLayout.createSequentialGroup()
-                .addGroup(headerLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(headerLayout.createSequentialGroup()
-                        .addContainerGap()
-                        .addComponent(jLabel5))
-                    .addGroup(headerLayout.createSequentialGroup()
-                        .addGap(108, 108, 108)
-                        .addComponent(jLabel6)))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addGap(210, 210, 210)
+                .addComponent(jLabel6))
+            .addGroup(headerLayout.createSequentialGroup()
+                .addGap(10, 10, 10)
+                .addComponent(jLabel5))
+            .addGroup(headerLayout.createSequentialGroup()
+                .addGap(118, 118, 118)
+                .addComponent(jLabel8))
         );
         headerLayout.setVerticalGroup(
             headerLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(headerLayout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(jLabel5)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(jLabel6)
-                .addContainerGap())
+                .addGap(40, 40, 40)
+                .addComponent(jLabel6))
+            .addGroup(headerLayout.createSequentialGroup()
+                .addGap(11, 11, 11)
+                .addComponent(jLabel5))
+            .addGroup(headerLayout.createSequentialGroup()
+                .addGap(39, 39, 39)
+                .addComponent(jLabel8))
         );
 
         content.setMinimumSize(new java.awt.Dimension(390, 260));
@@ -236,12 +286,12 @@ public class Inicio extends javax.swing.JFrame {
                 .addGroup(backgroundLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(backgroundLayout.createSequentialGroup()
                         .addGap(4, 4, 4)
-                        .addComponent(header, javax.swing.GroupLayout.DEFAULT_SIZE, 386, Short.MAX_VALUE))
+                        .addComponent(header, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                     .addComponent(content, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
         );
         backgroundLayout.setVerticalGroup(
             backgroundLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(menu, javax.swing.GroupLayout.DEFAULT_SIZE, 350, Short.MAX_VALUE)
+            .addComponent(menu, javax.swing.GroupLayout.DEFAULT_SIZE, 332, Short.MAX_VALUE)
             .addGroup(backgroundLayout.createSequentialGroup()
                 .addComponent(header, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(0, 0, 0)
@@ -357,6 +407,7 @@ public class Inicio extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
+    private javax.swing.JLabel jLabel8;
     private javax.swing.JSeparator jSeparator1;
     private javax.swing.JPanel menu;
     private javax.swing.JPanel trilhoP;

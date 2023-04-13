@@ -1,4 +1,52 @@
 /*
+DATA: 12 Abril 2023
+
+Nome: Levy Meireles Rodrigues dos Santos
+RA: 057772
+Turma: 5 SI
+
+Nome: Hugo Joel Sosa Geisse
+RA: 029230
+Turma: 5 SI
+
+Nome: João Vitor Teles Bonardi
+RA: 194341
+Turma: 1 EC
+
+Nome: Victor Augusto Malaquias Hoffman
+RA: 198462
+Turma: 1 EC
+
+Nome: Gabryel Meireles Rodrigues dos Santos
+RA: 059202
+Turma: 5 SI
+
+Nome: Gustavo Santos de araujo
+RA: 194578
+Turma: 1 EC
+
+Nome: Bruno de Oliveira
+RA: 183152
+Turma: 3 SI
+
+Nome: Lucas Cardoso Rios
+RA: 185793
+Turma: 3 SI
+
+Nome: Leonardo Ezequiel Sosa Geisse 
+RA: 158467
+Turma: 5 SI
+
+Nome: Kayan Guerra 
+RA: 018006
+Turma: 7 SI
+*/
+
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
+import mascara.util.LimitaCaracteres;
+
+/*
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JPanel.java to edit this template
  */
@@ -15,6 +63,7 @@ public class Cesar extends javax.swing.JPanel {
     public Cesar() {
         initComponents();
         Decriptar.setEnabled(false);
+        TextoInicial.setDocument(new LimitaCaracteres(200, LimitaCaracteres.TipoEntrada.NUMEROSELETRAS));
     }
 
     /**
@@ -37,6 +86,7 @@ public class Cesar extends javax.swing.JPanel {
         TextoEncriptado = new javax.swing.JTextField();
         TextoDecriptado = new javax.swing.JTextField();
         Decriptar = new javax.swing.JButton();
+        ErroTexto1 = new javax.swing.JTextField();
 
         setMinimumSize(new java.awt.Dimension(390, 260));
         setPreferredSize(new java.awt.Dimension(390, 260));
@@ -44,9 +94,9 @@ public class Cesar extends javax.swing.JPanel {
         background.setBackground(new java.awt.Color(204, 255, 255));
         background.setPreferredSize(new java.awt.Dimension(400, 290));
 
-        jLabel2.setText("texto inicial");
+        jLabel2.setText("texto inicial (MAIUSCULA E NUMEROS)");
 
-        jLabel3.setText("chave");
+        jLabel3.setText("chave (NUMERO)");
 
         jLabel4.setText("texto encriptado");
 
@@ -65,11 +115,7 @@ public class Cesar extends javax.swing.JPanel {
             }
         });
 
-        TextoInicial.addKeyListener(new java.awt.event.KeyAdapter() {
-            public void keyPressed(java.awt.event.KeyEvent evt) {
-                TextoInicialKeyPressed(evt);
-            }
-        });
+        TextoInicial.setToolTipText("");
 
         TextoEncriptado.setEditable(false);
 
@@ -82,6 +128,11 @@ public class Cesar extends javax.swing.JPanel {
             }
         });
 
+        ErroTexto1.setEditable(false);
+        ErroTexto1.setBackground(new java.awt.Color(204, 255, 255));
+        ErroTexto1.setForeground(new java.awt.Color(255, 51, 51));
+        ErroTexto1.setBorder(null);
+
         javax.swing.GroupLayout backgroundLayout = new javax.swing.GroupLayout(background);
         background.setLayout(backgroundLayout);
         backgroundLayout.setHorizontalGroup(
@@ -89,19 +140,28 @@ public class Cesar extends javax.swing.JPanel {
             .addGroup(backgroundLayout.createSequentialGroup()
                 .addGap(32, 32, 32)
                 .addGroup(backgroundLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jLabel2)
-                    .addComponent(jLabel3)
-                    .addComponent(Chave, javax.swing.GroupLayout.PREFERRED_SIZE, 26, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel4)
                     .addComponent(TextoEncriptado, javax.swing.GroupLayout.Alignment.TRAILING)
                     .addComponent(TextoInicial, javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(jLabel5)
-                    .addComponent(TextoDecriptado, javax.swing.GroupLayout.DEFAULT_SIZE, 187, Short.MAX_VALUE))
-                .addGap(63, 63, 63)
+                    .addComponent(TextoDecriptado)
+                    .addComponent(jLabel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addGroup(backgroundLayout.createSequentialGroup()
+                        .addGroup(backgroundLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jLabel3)
+                            .addComponent(Chave, javax.swing.GroupLayout.PREFERRED_SIZE, 26, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jLabel4)
+                            .addComponent(jLabel5))
+                        .addGap(0, 0, Short.MAX_VALUE)))
                 .addGroup(backgroundLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(Encriptar)
-                    .addComponent(Decriptar))
-                .addGap(29, 29, 29))
+                    .addGroup(backgroundLayout.createSequentialGroup()
+                        .addGap(63, 63, 63)
+                        .addGroup(backgroundLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(Encriptar)
+                            .addComponent(Decriptar))
+                        .addGap(29, 29, 29))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, backgroundLayout.createSequentialGroup()
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(ErroTexto1, javax.swing.GroupLayout.PREFERRED_SIZE, 143, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addContainerGap())))
         );
         backgroundLayout.setVerticalGroup(
             backgroundLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -113,7 +173,9 @@ public class Cesar extends javax.swing.JPanel {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(jLabel3)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(Chave, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGroup(backgroundLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(Chave, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(ErroTexto1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(jLabel4)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
@@ -133,36 +195,54 @@ public class Cesar extends javax.swing.JPanel {
         this.setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(background, javax.swing.GroupLayout.DEFAULT_SIZE, 390, Short.MAX_VALUE)
+            .addComponent(background, javax.swing.GroupLayout.DEFAULT_SIZE, 397, Short.MAX_VALUE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addComponent(background, javax.swing.GroupLayout.DEFAULT_SIZE, 264, Short.MAX_VALUE)
         );
     }// </editor-fold>//GEN-END:initComponents
-
+    public static String codificar(String letras, String texto, int chave){
+        String textoCodificado = "";
+               
+        char caracter;
+        for (int i = 0; i < texto.length(); i++) {
+            caracter = texto.charAt(i);
+            
+            int pos = letras.indexOf(caracter);
+         
+            if(pos == -1){
+                textoCodificado += caracter;
+            }else{
+                textoCodificado += letras.charAt( (pos + chave) % letras.length() );
+            }
+            
+        }
+        
+        return textoCodificado;
+    }
     private void EncriptarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_EncriptarActionPerformed
-        //comando de teste apagar qundo colocar formula logica
-        String texto1 = TextoInicial.getText();
-        TextoEncriptado.setText(texto1);
-        //colocar formula logica aqui
-        Decriptar.setEnabled(true);
+        ErroTexto1.setText("");
+        
+            if(Chave.getText()==null || Chave.getText().trim().equals("")){
+                ErroTexto1.setText("falta chave");
+            }else{
+                String textoinicial = TextoInicial.getText();
+                int chave = Integer.parseInt(Chave.getText());
+                String Abcedario = "ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789";
+                String textofinal = codificar(Abcedario,textoinicial,chave);
+                TextoEncriptado.setText(textofinal);
+                Decriptar.setEnabled(true);
+            }  
     }//GEN-LAST:event_EncriptarActionPerformed
 
     private void DecriptarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_DecriptarActionPerformed
-        //comando de teste apagar qundo colocar formula logica
-        String texto2 = TextoEncriptado.getText();
-        TextoDecriptado.setText(texto2);
-        //colocar formula logica aqui
+        String textoencriptado = TextoEncriptado.getText();
+        int chave = Integer.parseInt(Chave.getText());
+        String Abcedario = "ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789";
+        String textofinal = codificar(Abcedario,textoencriptado,chave*-1);
+        TextoDecriptado.setText(textofinal);
     }//GEN-LAST:event_DecriptarActionPerformed
-
-    private void TextoInicialKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_TextoInicialKeyPressed
-        if(evt.getKeyChar()== 32 || evt.getKeyChar()>= 48 && evt.getKeyChar()<= 57 || evt.getKeyChar()>= 97 && evt.getKeyChar()<= 122 || Character.isISOControl(evt.getKeyChar())){
-            TextoInicial.setEditable(true);
-        }else{
-            TextoInicial.setEditable(false);
-        }
-    }//GEN-LAST:event_TextoInicialKeyPressed
 
     private void ChaveKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_ChaveKeyPressed
         int caracteres = Chave.getText().length();
@@ -173,12 +253,12 @@ public class Cesar extends javax.swing.JPanel {
                 Chave.setEditable(false);
             }
         }else if(caracteres == 1 && Integer.parseInt(Chave.getText()) == 1 && evt.getKeyChar()>= 48 && evt.getKeyChar()<= 57 || Character.isISOControl(evt.getKeyChar())){
-                Chave.setEditable(true);
+            Chave.setEditable(true);
         }else if(caracteres == 1 && Integer.parseInt(Chave.getText()) == 2 && evt.getKeyChar()>= 48 && evt.getKeyChar()<= 53 || Character.isISOControl(evt.getKeyChar())){
-                Chave.setEditable(true);
+            Chave.setEditable(true);
         }else{
             Chave.setEditable(false);
-        }    
+        }
     }//GEN-LAST:event_ChaveKeyPressed
 
 
@@ -186,6 +266,7 @@ public class Cesar extends javax.swing.JPanel {
     private javax.swing.JTextField Chave;
     private javax.swing.JButton Decriptar;
     private javax.swing.JButton Encriptar;
+    private javax.swing.JTextField ErroTexto1;
     private javax.swing.JTextField TextoDecriptado;
     private javax.swing.JTextField TextoEncriptado;
     private javax.swing.JTextField TextoInicial;
